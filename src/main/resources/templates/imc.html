@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+
+    <link th:href="@{/main.css}" rel="stylesheet" />
+
+</head>
+<body>
+
+<h2>Index</h2>
+<span th:text="${today}"></span>
+
+<form action="/imc">
+    <p>Calculadora de IMC</p>
+    <input  name="peso"  placeholder="digite seu peso">
+    <br>
+    <br>
+    <input  name="altura"  placeholder="digite sua altura">
+    <br>
+    <br>
+    <input type="submit" value="calcular">
+</form>
+<br>
+<span th:text="${mensagem}"></span>
+
+</body>
+</html>

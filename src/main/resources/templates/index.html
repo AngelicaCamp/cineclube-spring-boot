@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="head:: head"/>
+<title>CineClub</title>
+
+<body>
+<!--
+  BARRA DE NAVEGACAO
+-->
+<!--injeta o fragmento do menu-->
+<div th:replace="menu:: menu"/>
+<main class="container">
+    <div class =""bg-light p-5 rounded"">
+    <a th:href="@{/filmes/list}">Listar Filmes</a>
+    <div class="row">
+
+    </div>
+</main>
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

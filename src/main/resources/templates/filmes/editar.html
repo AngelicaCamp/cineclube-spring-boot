@@ -1,0 +1,66 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="head:: head"/>
+<body>
+<div th:replace="menu:: menu"/>
+<main class="container">
+    <a class="btn btn-primary active" role="button" th:href="@{/filmes/new}">
+        <i class="bi bi-plus-square"></i>
+        Filme
+    </a>
+
+    <div class="bg-light p-5 rounded">
+        <div class="row">
+
+<!--            <span th:each="cat: ${categories}">-->
+<!--                <input type='checkbox' th:text="${cat}"/>-->
+<!--            </span>-->
+
+            <form th:object="${filme}" action="/filmes/update" method="POST">
+
+                <div class="col-8">
+                    <label class="form-label" for="id">Código</label>
+                    <input type="text" th:field="*{id}" class="form-control" placeholder="  " th:errorclass="inputError" autocomplete="off" readonly>
+                </div>
+                <br>
+
+                <div class="col-8">
+                    <label class="form-label" for="title">Título</label>
+                    <input type="text" th:field="*{title}" class="form-control" placeholder="  " th:errorclass="inputError" autocomplete="off">
+                </div>
+                <br>
+
+                <div class="col-8">
+                    <label class="form-label" for="category">Categoria</label>
+                    <br>
+                    <select name="category">
+                        <option th:each="cat: ${categories}"
+                                th:value="${cat}"
+                                th:text="${cat}"/>
+                    </select>
+                </div>
+                <br>
+
+                <div class="col">
+                    <label class="form-label" for="release">Lançamento</label>
+                    <input type="date" th:field="${filme.release}" class="form-control"
+                           autocomplete="off">
+                </div>
+                <br>
+
+                <div class="col">
+                    <label class="form-label" for="score">Avaliação</label>
+                    <input type="text" th:field="${filme.score}" class="form-control" placeholder="7.5"
+                           autocomplete="off">
+                </div>
+                <br>
+                <br>
+                <button class="btn btn-dark">Salvar</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
