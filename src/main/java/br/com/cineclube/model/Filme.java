@@ -1,25 +1,45 @@
 package br.com.cineclube.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Past;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Filme {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+
+    @NotNull        // não aceita valor null
     private String title;
+
+
+    @JsonIgnore
+    @NotNull
+    @Past(message = "nao aceita data futura") // nao aceita data futura
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate release;
+
+    @NotNull
     private Category category;
+
+    @Min(message = "deve ser >=0", value = 0)
+    @Max(message ="deve ser <= 10", value = 10)
+    @javax.validation.constraints.NotNull
     private BigDecimal score;
 
     public Filme() { }
