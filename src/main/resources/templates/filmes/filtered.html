@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="head:: head"/>
+<body>
+<!--
+  BARRA DE NAVEGACAO
+-->
+<!--injeta o fragmento do menu-->
+<div th:replace="menu:: menu"/>
+
+<!--
+  CONTEUDO DA PAGINA
+-->
+<main class="container">
+<!--    <a class="btn btn-primary active" role="button" th:href="@{/filmes/new}">-->
+<!--        <i class="bi bi-plus-square"></i>-->
+<!--        Filme-->
+<!--    </a>-->
+
+    <div class="bg-light p-5 rounded">
+
+        <div class="row">
+            <form action="" method="POST">
+
+
+
+<!--                <div class="mb-2">-->
+<!--                    <label class="form-label" for="categoria">Filtrar por categoria: <span>category</span></label>-->
+<!--                </div>-->
+<!--                <div class="mb-2">-->
+<!--                    <select class="form-select" name="cat" required="required">-->
+<!--                        <option value="">Selecione a categoria</option>-->
+<!--                        <option th:each="cat: ${categories}"-->
+<!--                                th:value="${cat}"-->
+<!--                                th:text="${cat}"/>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--                <div class="mb-4">-->
+<!--                    <button class="btn btn-success" type="submit">find</button>-->
+<!--                </div>-->
+            </form>
+        </div>
+
+        <div class="row">
+
+            <h2>Filmes disponíveis</h2>
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+<!--                    <th>ID</th>-->
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>Data de lançamento</th>
+                    <th>Nota Média</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- usando o thymeleaf para iterar na lista de filmes -->
+                <tr th:each="filme: ${filmeList}">
+                    <td th:text="${filme.title}"/>
+                    <td th:text="${filme.overview}"/>
+                    <td th:text="${filme.release_date}"/>
+                    <td th:text="${filme.vote_average}"/>
+
+<!--                    &lt;!&ndash; opção de deletar filme &ndash;&gt;-->
+<!--                    <td><a th:href="@{/filmes/delete/{id}(id=${filme.id})}">-->
+<!--                        <i class="bi bi-dash-circle" title="delete"></i>-->
+<!--                    </a></td>-->
+
+<!--                    &lt;!&ndash; opção de editar filme &ndash;&gt;-->
+<!--                    <td><a th:href="@{/filmes/editar/{id}(id=${filme.id})}">-->
+<!--                        <i class="bi bi-pencil" title="editar"></i>-->
+<!--                    </a></td>-->
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</main>
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

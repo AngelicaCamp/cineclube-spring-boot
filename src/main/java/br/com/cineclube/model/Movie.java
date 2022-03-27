@@ -8,7 +8,9 @@ public class Movie {
     private Long id;
     private String title;
     private String overview;
+    private String release_date;
     private BigDecimal vote_average;
+    private BigDecimal vote_count;
 
 
     public Long getId() {
@@ -27,6 +29,14 @@ public class Movie {
         this.title = title;
     }
 
+    public String getRelease_date() {
+        return release_date;
+    }
+
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
+    }
+
     public String getOverview() {
         return overview;
     }
@@ -41,5 +51,13 @@ public class Movie {
 
     public void setVote_average(BigDecimal vote_average) {
         this.vote_average = vote_average;
+    }
+
+    public BigDecimal getVote_count() {
+        return vote_count;
+    }
+
+    public void setVote_count(BigDecimal vote_count) {
+        this.vote_count = vote_count;
     }
 }
