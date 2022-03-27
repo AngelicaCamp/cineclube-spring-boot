@@ -46,6 +46,7 @@ public class PessoaRestController {
     // Atualizar pessoa (update)
     @PutMapping("/pessoa/{id}")
     ResponseEntity<Pessoa> putPessoa(@PathVariable Long id, @RequestBody Pessoa pessoa){
+        pessoa.setId(id);
         Pessoa p = daoPessoa.save(pessoa);
 
         if(p != null)

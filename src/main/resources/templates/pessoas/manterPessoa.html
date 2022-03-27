@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="head:: head"/>
+<body>
+<!--
+  BARRA DE NAVEGACAO
+-->
+<!--injeta o fragmento do menu-->
+<div th:replace="menu:: menu"/>
+
+<!--
+  CONTEUDO DA PAGINA
+-->
+<main class="container">
+<!--    <a class="btn btn-primary active" role="button" th:href="@{/api/v1/person}">-->
+<!--        <i class="bi bi-plus-square"></i>-->
+<!--        Pessoa-->
+<!--    </a>-->
+
+    <div class="bg-light p-5 rounded">
+
+        <div class="row">
+            <form th:object="${person}" action="/pessoas/buscaNome" method="GET">
+                <div class="mb-2">
+                    <label class="form-label" for="name">Buscar por nome: </label>
+                </div>
+                <div class="mb-2">
+                    <input type="text" th:field="*{name}" class="form-control" placeholder="digite um nome " autocomplete="off">
+
+                </div>
+                <div class="mb-4">
+                    <button class="btn btn-success" type="submit">Buscar</button>
+                </div>
+            </form>
+
+            <form th:object="${person}" action="/pessoas/buscarID" method="GET">
+                <div class="mb-2">
+                    <label class="form-label" for="id">Buscar por Código: </label>
+                </div>
+                <div class="mb-2">
+                    <input type="text" th:field="*{id}" class="form-control" placeholder="digite o código " autocomplete="off">
+
+                </div>
+                <div class="mb-4">
+                    <button class="btn btn-success" type="submit">Buscar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="row">
+
+            <h2>Resultado Busca:</h2>
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Popularidade</th>
+                    <th>Foto</th>
+                </tr>
+                </thead>
+                <tbody>
+<!--                 usando o thymeleaf para iterar na lista de filmes-->
+                <tr th:each="pessoa: ${pessoaList}">
+                    <td th:text="${pessoa.id}"/>
+                    <td th:text="${pessoa.name}"/>
+                    <td th:text="${pessoa.popularity}"/>
+                    <td><img th:src="@{${'https://image.tmdb.org/t/p/w500' + pessoa.profile_path}}" width="25%" alt="Imagem não encontrada"></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</main>
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
